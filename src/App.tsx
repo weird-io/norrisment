@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { HashRouter } from 'react-router-dom'
+import { HashRouter, Switch, Route } from 'react-router-dom'
 
 import ListPage from './components/pages/ListPage';
 import DetailPage from './components/pages/DetailPage';
@@ -10,19 +10,15 @@ import DetailPage from './components/pages/DetailPage';
 
 const store = createStore(() => { return {} });
 
-// const listPage: any = <div>List</div>;
-// const detailsPage: any = <div>Details</div>;
-
 export default () => (
   <Provider store={store}>
     <HashRouter>
-      <Route exact path="/" component={ListPage} />
-      <Route path="/:id" component={DetailPage} />
+      <Switch>
+        <Route exact path="/" component={ListPage} />
+        <Route path="/:id" render={(props) => {
+          return <DetailPage {...props} id={props.match.params.id} />
+        }} />
+      </Switch>
     </HashRouter>
-    {/* <Router history={browserHistory}> */}
-    {/* <Route exact path="/" component={listPage} /> */}
-
-    {/* </Router> */}
-
   </Provider>
 );

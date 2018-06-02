@@ -1,3 +1,4 @@
 # ignore project files
 node_modules
 lib
+dist

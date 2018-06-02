@@ -1,7 +1,4 @@
-import * as React from 'react';
-
-export default (props) => (
-  <div>
-    List
-  </div>
-);
+import * as React from "react";
+export default (function(props) {
+  return React.createElement("div", null, "List");
+});

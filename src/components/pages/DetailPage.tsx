@@ -1,4 +1,5 @@
 import * as React from "react";
-export default (function(props) {
-  return React.createElement("div", null, "Detail ", props.id);
-});
+
+export default (props) => {
+  return <div>Details {props.id}</div>;
+};

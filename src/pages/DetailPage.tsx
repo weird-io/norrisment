@@ -1,5 +1,7 @@
 import * as React from "react";
 
-export default (props) => {
+const DetailPage = (props) => {
   return <div>Details {props.id}</div>;
 };
+
+export { DetailPage };

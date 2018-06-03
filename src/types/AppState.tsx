@@ -1,8 +1,8 @@
 
 export interface Norrisism {
   id: string
-  question: string
-  answer: string
+  title: string
+  description: string
 }
 
 export interface AppState {

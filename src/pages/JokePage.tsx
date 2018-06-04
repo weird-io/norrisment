@@ -1,7 +1,5 @@
 import * as React from "react";
 
-const DetailPage = (props) => {
+export const JokePage = props => {
   return <div>Details {props.id}</div>;
 };
-
-export { DetailPage };

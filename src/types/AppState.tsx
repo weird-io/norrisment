@@ -1,10 +1,16 @@
+export interface Joke {
+  categories: string[];
+  icon_url: string;
+  id: string;
+  url: string;
+  value: string;
+}
 
-export interface Norrisism {
-  id: string
-  title: string
-  description: string
+export interface Category {
+  name: string;
 }
 
 export interface AppState {
-  norrisisms: Norrisism[]
+  categories: Category[];
+  jokes: Joke[];
 }

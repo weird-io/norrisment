@@ -9,18 +9,7 @@ import reducers from "./reducers";
 import sagas from "./sagas";
 import { catcher, logger } from "./middlewares";
 
-const sagaMiddleware = createSagaMiddleware({
-  emitter: emit => action => {
-    if (Array.isArray(action)) {
-      action.forEach(emit);
-      return;
-    }
-    emit(action);
-  },
-  logger: (level, [...args]) => {
-    console.log(level, args);
-  }
-});
+const sagaMiddleware = createSagaMiddleware();
 const store: Store = createStore(reducers, applyMiddleware(sagaMiddleware));
 
 sagaMiddleware.run(sagas);

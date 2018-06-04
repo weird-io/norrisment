@@ -1,6 +1,5 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import { AppState, Category } from "../types";
 import { fetchCategoriesRequest } from "../actions";
 
@@ -16,6 +15,10 @@ class HomePageInner extends React.Component<Props, AppState> {
     this.props.fetchCategories();
   }
 
+  handleButtonClick(evt: any) {
+    this.props.fetchCategories();
+  }
+
   render() {
     const list = this.props.categories ? this.props.categories.map(li) : null;
     // console.log(this.props);
@@ -23,23 +26,25 @@ class HomePageInner extends React.Component<Props, AppState> {
       <div>
         <h1>Norrisment for the soul</h1>
         <ul>{list}</ul>
+        <button onClick={this.handleButtonClick.bind(this)}>Click Me!</button>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state: AppState) => {
-  console.log("state", state);
+  console.log("mapStateToProps > state", state);
   return {
     categories: state.categories
   };
 };
+// ({
+//   categories: state.categories
+// });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchCategories: bindActionCreators(fetchCategoriesRequest, dispatch)
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  fetchCategories: () => dispatch(fetchCategoriesRequest())
+});
 
 export const HomePage = connect(
   mapStateToProps,

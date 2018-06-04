@@ -17,19 +17,9 @@ function* fetchRandomJoke(action) {
   // of a list which might actually be better
 }
 
-function* watchCategoriesRequest() {
-  while (true) {
-    yield takeEvery(FETCH_CATEGORIES_REQUEST, fetchCategories);
-  }
-}
-
-function* watchRandomJokeRequest() {
-  while (true) {
-    yield takeEvery(FETCH_RANDOM_JOKE_REQUEST, fetchRandomJoke);
-  }
-}
-
 export default function* root(): any {
-  yield fetchCategories({ type: FETCH_CATEGORIES_REQUEST });
-  //yield all([fork(watchCategoriesRequest), fork(watchRandomJokeRequest)]);
+  yield all([
+    takeEvery(FETCH_CATEGORIES_REQUEST, fetchCategories),
+    takeEvery(FETCH_RANDOM_JOKE_REQUEST, fetchRandomJoke)
+  ]);
 }

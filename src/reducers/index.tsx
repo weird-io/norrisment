@@ -1,4 +1,3 @@
-import { combineReducers, ReducersMapObject, AnyAction } from "redux";
 import { Category, AppState } from "../types";
 import { Action, FETCH_CATEGORIES_REQUEST, FETCH_CATEGORIES_COMPLETE, FETCH_RANDOM_JOKE_COMPLETE } from "../actions";
 
@@ -7,22 +6,14 @@ const defaultState: AppState = {
   jokes: []
 };
 
-declare interface ObjectConstructor {
-  assign(target: any, ...sources: any[]): any;
-}
-
 const categoriesReducer = (state: AppState = defaultState, action: Action) => {
   switch (action.type) {
     case FETCH_CATEGORIES_COMPLETE:
-      console.log("state", state, "payload", action.payload);
-      const result = Object.assign({}, state, {
-        categories: action.payload.map(x => {
-          return {
-            name: x
-          };
-        })
-      });
-      console.log(result);
+      const result = {
+        ...state,
+        categories: action.payload.map(name => ({ name: name }))
+      };
+      console.log("result", result);
       return result;
 
     default:
@@ -42,7 +33,11 @@ const randomJokeReducer = (state: AppState = defaultState, action: Action) => {
   }
 };
 
-export default combineReducers({
-  categoriesReducer,
-  randomJokeReducer
-});
+const mergeReducers = reducers => (state: AppState, action: Action) => {
+  reducers.forEach(reducer => {
+    state = reducer(state, action);
+  });
+  return state;
+};
+
+export default mergeReducers([categoriesReducer, randomJokeReducer]);

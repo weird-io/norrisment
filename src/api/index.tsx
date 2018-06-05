@@ -1,6 +1,3 @@
-import axios from "axios";
-import fetch from "node-fetch";
-
 const baseUrl: string = "https://api.chucknorris.io";
 
 async function get(url) {

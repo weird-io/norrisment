@@ -3,17 +3,14 @@ import { connect } from "react-redux";
 import { AppState, Category } from "../types";
 import { fetchCategoriesRequest } from "../actions";
 import { Link } from "react-router-dom";
+import { CategoryItem } from "../components";
 
 interface Props {
   categories: Category[];
   fetchCategories(): any;
 }
 
-const li = (category: Category) => (
-  <li key={category.name}>
-    <Link to={`/${category.name}`}>{category.name}</Link>
-  </li>
-);
+const li = (category: Category) => <CategoryItem name={category.name} />;
 
 class HomePageInner extends React.Component<Props, AppState> {
   constructor(props) {
@@ -35,6 +32,7 @@ class HomePageInner extends React.Component<Props, AppState> {
     return (
       <div>
         <h1>Norrisment for the soul</h1>
+        <p>Pick a category to get a random chuck norris joke</p>
         <ul>{list}</ul>
       </div>
     );

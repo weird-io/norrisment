@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware, Store } from "redux";
 import { HashRouter, Switch, Route } from "react-router-dom";
 import createSagaMiddleware from "redux-saga";
-import { HomePage, CategoryPage, JokePage } from "./pages";
+import { HomePage, JokePage } from "./pages";
 import { AppState } from "./types";
 import reducers from "./reducers";
 import sagas from "./sagas";
@@ -14,12 +14,8 @@ const store: Store = createStore(reducers, applyMiddleware(sagaMiddleware));
 
 sagaMiddleware.run(sagas);
 
-const categoryPageRenderer = props => {
-  return <CategoryPage {...props} category={props.match.params.category} jokes={[]} />;
-};
-
 const jokePageRenderer = props => {
-  return <JokePage {...props} category={props.match.params.category} joke={props.match.params.joke} />;
+  return <JokePage {...props} categoryName={props.match.params.category} />;
 };
 
 export default () => (
@@ -27,8 +23,7 @@ export default () => (
     <HashRouter>
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/:category" render={categoryPageRenderer} />
-        <Route path="/:category/:joke" render={jokePageRenderer} />
+        <Route exact path="/:category" render={jokePageRenderer} />
       </Switch>
     </HashRouter>
   </Provider>

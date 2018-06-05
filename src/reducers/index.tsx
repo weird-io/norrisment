@@ -1,20 +1,52 @@
 import { Category, AppState } from "../types";
-import { Action, FETCH_CATEGORIES_REQUEST, FETCH_CATEGORIES_COMPLETE, FETCH_RANDOM_JOKE_COMPLETE } from "../actions";
+import {
+  Action,
+  FETCH_CATEGORIES_REQUEST,
+  FETCH_CATEGORIES_COMPLETE,
+  FETCH_RANDOM_JOKE_COMPLETE,
+  REQUEST_IN_PROGRESS_START,
+  REQUEST_IN_PROGRESS_FINISH
+} from "../actions";
 
 const defaultState: AppState = {
-  categories: [],
-  jokes: []
+  settings: {
+    requestInProgress: false
+  },
+  categories: []
+};
+
+const requestInProgressReducer = (state: AppState = defaultState, action: Action) => {
+  switch (action.type) {
+    case REQUEST_IN_PROGRESS_START:
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          requestInProgress: true
+        }
+      };
+
+    case REQUEST_IN_PROGRESS_FINISH:
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          requestInProgress: false
+        }
+      };
+
+    default:
+      return state;
+  }
 };
 
 const categoriesReducer = (state: AppState = defaultState, action: Action) => {
   switch (action.type) {
     case FETCH_CATEGORIES_COMPLETE:
-      const result = {
+      return {
         ...state,
         categories: action.payload.map(name => ({ name: name }))
       };
-      console.log("result", result);
-      return result;
 
     default:
       return state;
@@ -24,9 +56,10 @@ const categoriesReducer = (state: AppState = defaultState, action: Action) => {
 const randomJokeReducer = (state: AppState = defaultState, action: Action) => {
   switch (action.type) {
     case FETCH_RANDOM_JOKE_COMPLETE:
-      // add random joke to state.jokes maybe?
-      console.log("state", state, "payload", action.payload);
-      return state;
+      return {
+        ...state,
+        randomJoke: action.payload
+      };
 
     default:
       return state;
@@ -40,4 +73,4 @@ const mergeReducers = reducers => (state: AppState, action: Action) => {
   return state;
 };
 
-export default mergeReducers([categoriesReducer, randomJokeReducer]);
+export default mergeReducers([categoriesReducer, randomJokeReducer, requestInProgressReducer]);

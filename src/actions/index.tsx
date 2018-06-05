@@ -4,7 +4,7 @@ export interface Action {
 }
 
 export interface ActionFactory {
-  (data?: any): Action;
+  (any?): Action;
 }
 
 export * from "./fetchCategories";

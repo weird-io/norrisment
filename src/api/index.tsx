@@ -1,7 +1,17 @@
 import axios from "axios";
+import fetch from "node-fetch";
 
 const baseUrl: string = "https://api.chucknorris.io";
 
-export const getCategories = () => axios.get(`${baseUrl}/jokes/categories`);
+async function get(url) {
+  const response = await fetch(url);
+  return await response.json();
+}
 
-export const getRandomJoke = (category: string) => axios.get(`${baseUrl}/jokes/random?category=${category}`);
+export function getCategories() {
+  return get(`${baseUrl}/jokes/categories`);
+}
+
+export function getRandomJoke(category: string) {
+  return get(category ? `${baseUrl}/jokes/random?category=${category}` : `${baseUrl}/jokes/random`);
+}

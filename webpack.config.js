@@ -6,7 +6,11 @@ const dist = path.join(__dirname, "dist");
 module.exports = {
   context: src,
   devtool: "inline-source-map",
-  entry: "./index.tsx",
+  entry: {
+    app: "./index.tsx",
+    tachyons: "tachyons/css/tachyons.css",
+    vendor: ["react", "react-dom", "react-router"]
+  },
   resolve: {
     extensions: [".tsx", ".ts", ".js"]
   },
@@ -16,14 +20,45 @@ module.exports = {
         test: /\.tsx?$/,
         use: "ts-loader",
         exclude: [/node_modules/, /lib/]
+      },
+      {
+        test: /\.css$/,
+        use: [{ loader: "style-loader" }, { loader: "css-loader" }]
+      },
+      {
+        test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url?limit=10000&mimetype=application/font-woff&name=fonts/[name].[ext]"
+      },
+      {
+        test: /\.woff2(\?\S*)?$/,
+        loader: "url?limit=10000&mimetype=application/font-woff2&name=fonts/[name].[ext]"
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url?limit=10000&mimetype=application/font-tff&name=fonts/[name].[ext]"
+      },
+      {
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "file?name=fonts/[name].[ext]"
+      },
+      {
+        test: /\.png(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "file?name=img/[name].[ext]"
+      },
+      {
+        test: /\.gif(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "file?name=img/[name].[ext]"
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url?limit=10000&mimetype=image/svg+xml&name=img/[name].[ext]"
       }
     ]
   },
   output: {
     path: dist,
-    filename: "bundle.js"
+    filename: "[name].js"
   },
-  // For development https://webpack.js.org/configuration/devtool/#for-development
   devServer: {
     contentBase: dist,
     port: 8080,

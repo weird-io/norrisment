@@ -3,14 +3,14 @@ import { connect } from "react-redux";
 import { AppState, Category } from "../types";
 import { fetchCategoriesRequest } from "../actions";
 import { Link } from "react-router-dom";
-import { CategoryItem } from "../components";
+import { CategoryItem, Loading } from "../components";
 
 interface Props {
   categories: Category[];
   fetchCategories(): any;
 }
 
-const li = (category: Category) => <CategoryItem name={category.name} />;
+const li = (category: Category, i: Number) => <CategoryItem name={category.name} key={i} />;
 
 class HomePageInner extends React.Component<Props, AppState> {
   constructor(props) {
@@ -27,13 +27,12 @@ class HomePageInner extends React.Component<Props, AppState> {
   }
 
   render() {
-    const list = this.props.categories ? this.props.categories.map(li) : null;
-    // console.log(this.props);
+    const list = this.props.categories && this.props.categories.length ? this.props.categories.map(li) : <Loading />;
     return (
       <div>
-        <h1>Norrisment for the soul</h1>
-        <p>Pick a category to get a random chuck norris joke</p>
-        <ul>{list}</ul>
+        <h1 className="f1">Norrisment for the soul</h1>
+        <p className="f6 ttu mt0 mb3 bt pb2 pt2">Pick a category to get a random chuck norris joke</p>
+        <ul className="ma0 pa0">{list}</ul>
       </div>
     );
   }

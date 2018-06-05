@@ -19,12 +19,14 @@ const jokePageRenderer = props => {
 };
 
 export default () => (
-  <Provider store={store}>
-    <HashRouter>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/:category" render={jokePageRenderer} />
-      </Switch>
-    </HashRouter>
-  </Provider>
+  <div className="ph3 ph5-ns">
+    <Provider store={store}>
+      <HashRouter>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/:category" render={jokePageRenderer} />
+        </Switch>
+      </HashRouter>
+    </Provider>
+  </div>
 );

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { AppState, Category, Joke } from "../types";
 import { fetchCategoriesRequest, fetchRandomJokeRequest } from "../actions";
 import { Link } from "react-router-dom";
+import { Loading } from "../components";
 
 interface Props {
   categoryName: string;
@@ -29,18 +30,29 @@ class JokePageInner extends React.Component<Props, AppState> {
   render() {
     const joke = this.props.joke;
     if (!joke) {
-      return <div>This is no joke</div>;
+      return (
+        <div>
+          <h1>This is no joke</h1>
+          <Loading />
+        </div>
+      );
     }
     return (
       <div>
-        <h1>{this.props.categoryName ? this.props.categoryName : "Random"}</h1>
-        <img src={joke.icon_url} />
-        <p>{joke.value}</p>
-        <p>{joke.id}</p>
-        <Link to="/">
-          <button>Home</button>
-        </Link>
-        <button onClick={this.handleButtonClick}>Another one please!</button>
+        <p className="b bb pb2">/ {this.props.categoryName ? this.props.categoryName : "Random"}</p>
+        {/* <div className="w-100">
+          <img src={joke.icon_url} />
+        </div> */}
+        <h1>{joke.value}</h1>
+        <p className="f7">#{joke.id}</p>
+        <div className="mt4">
+          <Link to="/">
+            <button className="ba b--blue br3 bg-white pa3 mr2 blue">Home</button>
+          </Link>
+          <button className="ba b--blue br3 bg-white pa3 blue" onClick={this.handleButtonClick}>
+            Another one please!
+          </button>
+        </div>
       </div>
     );
   }

@@ -28,21 +28,21 @@ import {
 } from "@fortawesome/fontawesome-free-solid";
 
 FontAwesome.library.add(
-  faCode,
-  faFilm,
-  faStroopwafel,
-  faUserCircle,
-  faFlask,
-  faFutbol,
-  faBalanceScale,
-  faChurch,
-  faCrow,
-  faHistory,
-  faMusic,
-  faPlane,
-  faBriefcase,
-  faMoneyBillAlt,
-  faTshirt
+  faCode as any,
+  faFilm as any,
+  faStroopwafel as any,
+  faUserCircle as any,
+  faFlask as any,
+  faFutbol as any,
+  faBalanceScale as any,
+  faChurch as any,
+  faCrow as any,
+  faHistory as any,
+  faMusic as any,
+  faPlane as any,
+  faBriefcase as any,
+  faMoneyBillAlt as any,
+  faTshirt as any
 );
 
 const defaultState: AppState = {

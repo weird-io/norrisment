@@ -14,6 +14,7 @@
     "@types/node": "^10.3.0",
     "@types/react": "^16.3.16",
     "@types/react-dom": "^16.0.5",
+    "@types/react-fontawesome": "^1.6.3",
     "@types/react-redux": "^6.0.1",
     "@types/react-router-dom": "^4.2.7",
     "@types/redux": "^3.6.0",
@@ -37,9 +38,10 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
-    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome": "^1.2.0-2",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
-    "@fortawesome/react-fontawesome": "0.0.20",
+    "@fortawesome/fontawesome-free-brands": "^5.0.6",
+    "@fortawesome/react-fontawesome": "0.1.0-1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-redux": "^5.0.7",

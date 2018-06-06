@@ -7,12 +7,11 @@ import { Loading } from "../components";
 
 interface Props {
   categoryName: string;
+  categoryIcon: string;
   joke?: Joke;
   fetchJoke(categoryName: string): any;
   clearJoke(): any;
 }
-
-const li = (category: Category) => <li key={category.name}>{category.name}</li>;
 
 class JokePageInner extends React.Component<Props, AppState> {
   constructor(props) {

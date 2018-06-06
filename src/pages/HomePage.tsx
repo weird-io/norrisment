@@ -10,7 +10,7 @@ interface Props {
   fetchCategories(): any;
 }
 
-const li = (category: Category, i: Number) => <CategoryItem name={category.name} key={i} />;
+const li = (category: Category, i: Number) => <CategoryItem name={category.name} icon={category.icon} key={i} />;
 
 class HomePageInner extends React.Component<Props, AppState> {
   constructor(props) {

@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reducers should clear the joke 1`] = `
+Object {
+  "categories": Array [],
+  "randomJoke": null,
+  "settings": Object {
+    "requestInProgress": false,
+  },
+}
+`;
+
+exports[`Reducers should reduce categories 1`] = `
+Object {
+  "categories": Array [
+    Object {
+      "icon": "",
+      "name": "one",
+    },
+    Object {
+      "icon": "",
+      "name": "two",
+    },
+    Object {
+      "icon": "",
+      "name": "three",
+    },
+  ],
+  "settings": Object {
+    "requestInProgress": false,
+  },
+}
+`;
+
+exports[`Reducers should reduce joke 1`] = `
+Object {
+  "categories": Array [],
+  "randomJoke": Object {
+    "icon_url": "https://assets.chucknorris.host/img/avatar/chuck-norris.png",
+    "id": "bKq5KbcBSq6hNVswRZYu9A",
+    "url": "https://api.chucknorris.io/jokes/bKq5KbcBSq6hNVswRZYu9A",
+    "value": "ghrjwgdfnbjkgdnkshx sorry Chuck Norris is informing me that the universe started 13 billion years ago fgvhlfjdunhedhgsejkwxbwgdjh",
+  },
+  "settings": Object {
+    "requestInProgress": false,
+  },
+}
+`;

@@ -8,6 +8,42 @@ import {
   REQUEST_IN_PROGRESS_FINISH,
   CLEAR_RANDOM_JOKE
 } from "../actions";
+import * as FontAwesome from "@fortawesome/fontawesome";
+import {
+  faCode,
+  faFilm,
+  faStroopwafel,
+  faUserCircle,
+  faFlask,
+  faFutbol,
+  faBalanceScale,
+  faChurch,
+  faCrow,
+  faHistory,
+  faMusic,
+  faPlane,
+  faBriefcase,
+  faMoneyBillAlt,
+  faTshirt
+} from "@fortawesome/fontawesome-free-solid";
+
+FontAwesome.library.add(
+  faCode,
+  faFilm,
+  faStroopwafel,
+  faUserCircle,
+  faFlask,
+  faFutbol,
+  faBalanceScale,
+  faChurch,
+  faCrow,
+  faHistory,
+  faMusic,
+  faPlane,
+  faBriefcase,
+  faMoneyBillAlt,
+  faTshirt
+);
 
 const defaultState: AppState = {
   settings: {
@@ -15,6 +51,27 @@ const defaultState: AppState = {
   },
   categories: []
 };
+
+const iconForCategoryMap: { [key: string]: string } = {
+  dev: "code",
+  movie: "film",
+  food: "stroopwafel",
+  celebrity: "user-circle",
+  science: "flask",
+  sport: "futbol",
+  political: "balance-scale",
+  religion: "church",
+  animal: "crow",
+  history: "history",
+  music: "music",
+  travel: "plane",
+  career: "briefcase",
+  money: "money-bill-alt",
+  fashion: "tshirt"
+};
+function getIconForCategory(name: string): string {
+  return iconForCategoryMap[name] ? iconForCategoryMap[name] : "";
+}
 
 const requestInProgressReducer = (state: AppState = defaultState, action: Action) => {
   switch (action.type) {
@@ -46,7 +103,10 @@ const categoriesReducer = (state: AppState = defaultState, action: Action) => {
     case FETCH_CATEGORIES_COMPLETE:
       return {
         ...state,
-        categories: action.payload.filter(name => name !== "explicit").map(name => ({ name: name }))
+        categories: action.payload
+          .filter(name => name !== "explicit")
+          .map(name => ({ name: name }))
+          .map(category => ({ ...category, icon: getIconForCategory(category.name) }))
       };
 
     default:

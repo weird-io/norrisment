@@ -8,6 +8,7 @@ export interface Joke {
 
 export interface Category {
   name: string;
+  icon: string;
 }
 
 export interface Settings {

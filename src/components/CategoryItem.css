@@ -1,0 +1,8 @@
+.lstn {
+  list-style-type: none;
+}
+
+.lstn a:hover, .lstn a:active, .lstn a:visited, .lstn a:-webkit-any-link {
+  text-decoration: none !important;
+  color: black;
+}
